@@ -54,9 +54,12 @@ Dev Tinder is a MERN stack–based web application designed to help developers c
    ```bash
    npm i -g nodemon   
 
-5. NPM Scripts Setup   
-   ```json
-  "scripts": {
+5. ## 📜 NPM Scripts Setup
+
+The following scripts were added to `package.json`:
+
+```json
+"scripts": {
   "start": "node src/app.js",
   "dev": "nodemon src/app.js"
-   }
+}
