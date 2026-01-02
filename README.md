@@ -63,6 +63,7 @@ The following scripts were added to `package.json`:
   "start": "node src/app.js",
   "dev": "nodemon src/app.js"
 }
+```
 6. Install Mongoose
    ```bash
    npm i mongoose
