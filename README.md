@@ -67,3 +67,9 @@ The following scripts were added to `package.json`:
 6. Install Mongoose
    ```bash
    npm i mongoose
+   ```
+7. Install Validator Library(for api validation and data sanitization)
+   ```bash
+   npm i validator
+   ```   
+
