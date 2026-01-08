@@ -71,5 +71,9 @@ The following scripts were added to `package.json`:
 7. Install Validator Library(for api validation and data sanitization)
    ```bash
    npm i validator
-   ```   
+   ```
+8. Install Bcrypt library(for encrypting password)
+    ```bash
+    npm i bcrypt
+    ```      
 
