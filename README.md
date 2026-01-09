@@ -76,4 +76,11 @@ The following scripts were added to `package.json`:
     ```bash
     npm i bcrypt
     ```      
-
+9. Install jsonwebtoken library(for creating tokens)
+   ```bash
+   npm i jsonwebtoken
+   ```
+10. Install cookie-parser library(for reading cookies and this librarg is giving by expres.js team)    
+    ```bash
+    npm i cookie-parser
+    ```
