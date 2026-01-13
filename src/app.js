@@ -1,89 +1,25 @@
 const express = require("express");
 const connectDB = require("./config/database");
 const User = require("./models/user");
-const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
-const {userAuth } = require("./middlewares/auth");
+const authRouter = require("./routes/auth");
+const profileRouter = require("./routes/profile");
+const requestRouter = require("./routes/request");
 
-const {validateSignUpApi}= require("./utils/validation")
+
+
 
 const app = express();
 
 
 app.use(express.json());//middleware for converting json data(daynamic data which will passed by api) into js object
 app.use(cookieParser());//middleware for reading cookies
-// create a api to send the user data to db
-app.post("/signup",async(req,res)=>{
-    
-    // console.log(req.body);
-    
-    // const userObj={  // hsrd coded data
-    //     firstName:"Atul",
-    //     lastName:"Saini",
-    //     emailId:"atusaini@gmail.com",
-    //     password:"atulsaini@120",
-    //     age:"22",
-    //     gender:"Male",
-    // }
-    
-    try{
 
-        validateSignUpApi(req);//validation of data
+app.use("/",authRouter);
+app.use("/",profileRouter);
+app.use("/",requestRouter);
 
-        const {firstName,lastName,emailId,password,Skills} = req.body;
 
-        const passwordHash = await bcrypt.hash(password,10);// encrypting password
-
-        //create a new instance of user model to save the data
-        const user = new User({
-            firstName,
-            lastName,
-            emailId,
-            password:passwordHash,
-            Skills,
-            // only add fields which you want to send ,if you add another fields in api they will just ignored
-        });
-
-        await user.save();
-        res.send("user added successfully!");
-    }catch(err){
-        res.status(400).send("Error : " + err.message);
-    }
-});
-// login api
-app.post("/logIn",async(req,res)=>{
-    try{
-        const {emailId,password} = req.body;
-        const user = await User.findOne({emailId:emailId});
-        if(!user){
-            throw new Error("Invalid credentials");//always use this type of err msg for secure db
-        }
-        const isPasswordvalid =await user.validatePassword(password);
-        if (!isPasswordvalid) {
-        throw new Error("Invalid credentials");
-        }
-        // generate token
-        const token = await user.getJWT();
-        // add the token inside cookie and send the response back to the user
-        res.cookie("token",token,{expires:new Date(Date.now()+1*3600000)});
-        res.send("Login successful!!");
-    }catch(err){
-        res.status(400).send("Error : " + err.message);
-    }
-    
-
-});
-
-// get profile by cookie
-app.get("/profile",userAuth,async(req,res)=>{
-   try{
-        const users = req.user;
-        res.send(users);
-    }catch(err){
-        res.status(400).send("Error : " + err.message);
-    }
-});
 
 
 // get all the user form the db 

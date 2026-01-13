@@ -11,4 +11,21 @@ const validateSignUpApi=(req)=>{
     }
 };
 
-module.exports = {validateSignUpApi};
+const validateEditProfileData = (req)=>{
+    const data = req.body;
+    const AllowedUpdate = ["age","gender","about","Skills"];
+    const isAllowedupdate = Object.keys(data).every((k)=>AllowedUpdate.includes(k));
+    
+    return isAllowedupdate;
+
+};
+
+const validateStatus=(req)=>{
+    const status = req.params.status;
+    const allowedStatus = ["interested","ignored"];
+    const isAllowedStatus= allowedStatus.includes(status);
+
+    return isAllowedStatus;
+}
+
+module.exports = {validateSignUpApi,validateEditProfileData,validateStatus};
