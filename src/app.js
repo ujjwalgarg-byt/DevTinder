@@ -13,7 +13,10 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin:" http://localhost:5173",
+    credentials:true
+}));
 app.use(express.json());//middleware for converting json data(daynamic data which will passed by api) into js object
 app.use(cookieParser());//middleware for reading cookies
 
