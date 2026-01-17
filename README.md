@@ -84,3 +84,7 @@ The following scripts were added to `package.json`:
     ```bash
     npm i cookie-parser
     ```
+11. Install CORS package(to prevent cors error at browser level)    
+    ```bash
+    npm i cors
+    ```
