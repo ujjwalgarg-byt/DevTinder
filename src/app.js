@@ -6,13 +6,14 @@ const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const userRouter = require("./routes/user");
+const cors = require("cors");
 
 
 
 
 const app = express();
 
-
+app.use(cors());
 app.use(express.json());//middleware for converting json data(daynamic data which will passed by api) into js object
 app.use(cookieParser());//middleware for reading cookies
 
