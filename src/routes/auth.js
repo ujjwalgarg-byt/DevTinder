@@ -22,7 +22,7 @@ authRouter.post("/signup",async(req,res)=>{
 
         validateSignUpApi(req);//validation of data
 
-        const {firstName,lastName,emailId,password,Skills} = req.body;
+        const {firstName,lastName,emailId,password,Skills,photoUrl} = req.body;
 
         const passwordHash = await bcrypt.hash(password,10);// encrypting password
 
@@ -33,6 +33,7 @@ authRouter.post("/signup",async(req,res)=>{
             emailId,
             password:passwordHash,
             Skills,
+            photoUrl
             // only add fields which you want to send ,if you add another fields in api they will just ignored
         });
 
