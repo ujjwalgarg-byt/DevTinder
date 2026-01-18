@@ -13,7 +13,7 @@ const validateSignUpApi=(req)=>{
 
 const validateEditProfileData = (req)=>{
     const data = req.body;
-    const AllowedUpdate = ["age","gender","about","Skills","photoUrl"];
+    const AllowedUpdate = ["age","gender","about","Skills","photoUrl","lastName","firstName"];
     const isAllowedupdate = Object.keys(data).every((k)=>AllowedUpdate.includes(k));
     
     return isAllowedupdate;
