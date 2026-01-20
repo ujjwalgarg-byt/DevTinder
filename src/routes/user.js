@@ -3,7 +3,7 @@ const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
 const userRouter = express.Router();
-const USER_DATA = "firstName lastName Skills about";
+const USER_DATA = "firstName lastName Skills about age gender photoUrl";
 // get all the received pending request for loggedIn user
 userRouter.get("/user/requests/received", userAuth, async (req, res) => {
   try {
